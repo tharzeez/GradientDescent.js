@@ -1,15 +1,17 @@
 // let sample = [[1,1], [2,2], [3,3]]
 
-
+// no condition check for sample data,
+// give the sample data in [[x1, y1], ......[xm, ym]]
 let sample = [[15,7],[4,10],[12,9],[12,9],[12,9],[22,3],[25,0],[21,3],[25,0],[23,2],[23,2],[21,3],
 [21,3],[25,0],[23,2],[21,3],[25,0],[23,2],[21,3],[25,0],[24,1],[21,3],[25,0],[25,0],[24,1],[25,0],
 [21,3]]
 
+// initial value is set to zero
 let thetaZero = 0;
 let thetaOne = 0;
 
 // kept lower to avoid over shooting
-let alphaRate = 0.0001
+let alphaRate = 0.001
 let diff = []
 let diffSum = 0
 let diffSumForThetaOne = 0
@@ -26,8 +28,8 @@ for (let i = 0; i<250000; i++) {
       diffSum += diff[j]
       diffSumForThetaOne += (diff[j] *sample[j][0])
     }
-    tempZero = thetaZero - (alphaRate/3*(diffSum))
-    tempOne = thetaOne - (alphaRate/3*(diffSumForThetaOne))
+    tempZero = thetaZero - (alphaRate/sample.length*(diffSum))
+    tempOne = thetaOne - (alphaRate/sample.length*(diffSumForThetaOne))
     // to know the program is running
     console.log(tempZero, tempOne, Math.abs(thetaZero - tempZero) > precision)
   
